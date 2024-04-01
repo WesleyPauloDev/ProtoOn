@@ -25,7 +25,8 @@ function LoginFormAuth() {
     e.preventDefault();
     try {
 
-      const response = await axios.get('http://localhost:8080/users');//Buscando usuarios
+      // const response = await axios.get('http://localhost:8080/users');//Buscando usuarios
+      const response = await axios.get('https://siteprotoon.azurewebsites.net/users');//Buscando usuarios
       const users = response.data;
       const user = users.find(u => u.username === username);
       if (user) {
@@ -74,10 +75,7 @@ function LoginFormAuth() {
         setUsers(response.data);
         const role = localStorage.getItem('role');
 
-        if (role !== "ADMIN") {
-          console.log("Role: ", role)
-          setErrorMessage('Você não tem autorização para ver esta página.');
-        }
+        
       } catch (error) {
         console.error("Erro ao buscar os usuários:", error);
       }
